@@ -1,4 +1,3 @@
-import useLocalStorage from '../../hooks/ls/useLocalStorage';
 
 type SignUpType = {
   email: string,
@@ -11,7 +10,6 @@ interface SignUp {
 }
 
 export const SignUpApi = (props: SignUpType): SignUp => {
-  const { setLocalStorage } = useLocalStorage();
   // const options = {
   //   method: 'POST',
   //   headers: {
@@ -27,6 +25,5 @@ export const SignUpApi = (props: SignUpType): SignUp => {
   //   return;
   // }
 
-  setLocalStorage('user', [props]);
   return {status: true, message: 'Signup successful'};
 };
