@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root[theme='dark'] {
+    --bg-color: theme('colors.bgDark');
+    --text-color: theme('colors.textLight');
+  }
+  :root[theme='light'] {
+    --bg-color: theme('colors.bgLight');
+    --text-color: theme('colors.textDark');
+  }
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+}
