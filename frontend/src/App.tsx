@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import SignUp from './pages/auth/SignUp';
+import { Route, Routes } from 'react-router';
+import Home from './pages/home/Home';
+import AuthRoute from './routes/AuthRoute';
 
-function App(): ReturnType<React.FC> {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => setCount(2), []);
-  
+function App(): ReturnType<React.FC> {  
   return (
-    <div className='text-center text-2xl w-screen h-screen font-primary'>
-      <h1>Here is the count: {count}</h1>
+    <div className='w-screen h-screen font-primary'>
+      <Routes>
+        <Route element={<AuthRoute />}>
+          <Route path='/' element={<Home />} />
+        </Route>
+
+        <Route path='/signup' element={<SignUp />} />
+      </Routes>
     </div>
   );
 }

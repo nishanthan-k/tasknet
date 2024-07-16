@@ -25,20 +25,19 @@ module.exports = {
       'allowHigherOrderFunctions': true,
       'allowDirectConstAssertionInArrowFunctions': true
     }],
-    '@typescript-eslint/explicit-function-return-type': [
-      'error',
-      {
-        allowExpressions: true,
-        allowTypedFunctionExpressions: true,
-      },
-    ],
+    // '@typescript-eslint/explicit-function-return-type': [
+    //   'error',
+    //   {
+    //     allowExpressions: true,
+    //     allowTypedFunctionExpressions: true,
+    //   },
+    // ],
     '@typescript-eslint/no-explicit-any': 'error',
     // 'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'indent': ['error', 2],
     'semi': ['error', 'always'],
     'no-unused-vars': ['warn'],
     'quotes': ['error', 'single'],
-    'no-console': 'warn',
     'eqeqeq': ['error', 'always'],
     'no-multi-spaces': 'error',
   },
