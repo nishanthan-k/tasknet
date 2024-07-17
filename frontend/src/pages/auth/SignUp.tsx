@@ -6,6 +6,7 @@ import { SignUpApi } from '../../services/auth/Auth.service';
 import useLocalStorage from '../../hooks/ls/useLocalStorage';
 import { useSetRecoilState } from 'recoil';
 import { UserAtom } from '../../store/atoms/auth/Auth.atom';
+import FormInput from '../../globals/form/FormInput';
 
 const signupSchema = z.object({
   email: z.string().email(),
@@ -52,40 +53,32 @@ export default function SignUp(): JSX.Element {
         onSubmit={onSubmit}
       >
         <div className='w-full'>
-          <input
-            className='w-full rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500'
-            type="email"
-            id="email"
-            placeholder='Email'
-            {...register('email', { required: 'Email is required' })}
+          <FormInput
+            name="email"
+            placeholder="Enter your email"
+            register={register}
+            error={errors.email?.message}
           />
-          {errors?.email && <p className='text-red-500'>{`${errors?.email.message}`}</p>}
         </div>
         
         <div className='w-full'>
-          <input
-            className='w-full rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500'
-            type="password"
-            id="password"
+          <FormInput
+            type='password'
+            name='password'
             placeholder='Password'
-            {...register('password', { required: 'Password is required' })}
+            register={register}
+            error={errors.password?.message}
           />
-          {errors?.password && <p className='text-red-500'>{`${errors?.password.message}`}</p>}
         </div>
         
         <div className='w-full'>
-          <input
-            className='w-full rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500'
-            type="password"
-            id="confirmPassword"
+          <FormInput
+            type='password'
+            name='confirmPassword'
             placeholder='Confirm Password'
-            {...register('confirmPassword', {
-              required: 'Confirm Password is required',
-            })}
+            register={register}
+            error={errors.confirmPassword?.message}
           />
-          {errors?.confirmPassword && (
-            <p className='text-red-500'>{`${errors?.confirmPassword.message}`}</p>
-          )}
         </div>
 
         <button
