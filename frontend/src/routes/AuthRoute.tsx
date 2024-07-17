@@ -10,5 +10,5 @@ export default function AuthRoute(): ReactElement {
 
   console.log('isAuth', isAuth);
 
-  return isAuth ? <Outlet /> : <Navigate to='/signup' />;
+  return isAuth ? <Outlet /> : <Navigate to='/login' />;
 }

@@ -1,15 +1,15 @@
 
-type SignUpType = {
+type AuthApiPropsType = {
   email: string,
   password: string,
 }
 
-interface SignUp {
+interface AuthApiRespType {
   status: boolean,
   message: string,
 }
 
-export const SignUpApi = async (props: SignUpType): Promise<SignUp> => {
+export const SignUpApi = async (props: AuthApiPropsType): Promise<AuthApiRespType> => {
   // const options = {
   //   method: 'POST',
   //   headers: {
@@ -27,4 +27,9 @@ export const SignUpApi = async (props: SignUpType): Promise<SignUp> => {
   console.log(JSON.stringify(props));
 
   return {status: true, message: 'Signup successful'};
+};
+
+export const LoginApi = async (props: AuthApiPropsType): Promise<AuthApiRespType> => {
+  console.log(props);
+  return { status: true, message: 'Login successful' };
 };

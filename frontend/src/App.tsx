@@ -7,6 +7,7 @@ import { useSetRecoilState } from 'recoil';
 import { UserAtom } from './store/atoms/auth/Auth.atom';
 import useLocalStorage from './hooks/ls/useLocalStorage';
 import { UserAtomType } from './globals/types/user.types';
+import Login from './pages/auth/Login';
 
 function App(): ReturnType<React.FC> {
   const setUserAtom = useSetRecoilState(UserAtom);
@@ -26,6 +27,7 @@ function App(): ReturnType<React.FC> {
           <Route path='/' element={<Home />} />
         </Route>
 
+        <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
       </Routes>
     </div>
