@@ -1,9 +1,14 @@
+import { ReactElement } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { ReactElement, useContext } from 'react';
-import { AuthContext } from '../contexts/auth/AuthContext';
+import useLocalStorage from '../hooks/ls/useLocalStorage';
+import { UserAtomType } from '../globals/types/user.types';
 
 export default function AuthRoute(): ReactElement {
-  const {isLoggedIn} = useContext(AuthContext);
+  const { getLocalStorage } = useLocalStorage();
+  const userData = getLocalStorage<UserAtomType>('user');
+  const isAuth = Boolean(userData?.email);
 
-  return isLoggedIn ? <Outlet /> : <Navigate to='/signup' />;
+  console.log('isAuth', isAuth);
+
+  return isAuth ? <Outlet /> : <Navigate to='/signup' />;
 }

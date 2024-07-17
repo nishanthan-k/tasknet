@@ -1,16 +1,16 @@
-
 interface LocalStorageType {
-  getLocalStorage: (key: string) => unknown[];
-  setLocalStorage: (key: string, data: unknown[]) => void;
+  getLocalStorage: <T>(key: string) => T | null;
+  setLocalStorage: <T>(key: string, data: T) => void;
 }
 
 export default function useLocalStorage(): LocalStorageType {
-  const getLocalStorage = (key: string): unknown[] => {
+  const getLocalStorage = <T>(key: string): T | null => {
     const storedItem = window.localStorage.getItem(key);
-    return storedItem ? JSON.parse(storedItem) : [];
+    
+    return storedItem ? JSON.parse(storedItem) : null;
   };
 
-  const setLocalStorage = (key: string, data: unknown[]): void => {
+  const setLocalStorage = <T>(key: string, data: T): void => {
     window.localStorage.setItem(key, JSON.stringify(data));
   };
 

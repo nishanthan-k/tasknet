@@ -1,13 +1,13 @@
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
-import AuthContextProvider from './contexts/auth/AuthContext.tsx';
+import { RecoilRoot } from 'recoil';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <BrowserRouter>
-    <AuthContextProvider>
+  <RecoilRoot>
+    <BrowserRouter>
       <App />
-    </AuthContextProvider>
-  </BrowserRouter>,
+    </BrowserRouter>
+  </RecoilRoot>,
 );

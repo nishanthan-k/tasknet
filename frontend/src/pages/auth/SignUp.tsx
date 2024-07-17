@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router';
 import { z } from 'zod';
 import { SignUpApi } from '../../services/auth/Auth.service';
 import useLocalStorage from '../../hooks/ls/useLocalStorage';
+import { useSetRecoilState } from 'recoil';
+import { UserAtom } from '../../store/atoms/auth/Auth.atom';
 
 const signupSchema = z.object({
   email: z.string().email(),
@@ -14,21 +16,30 @@ const signupSchema = z.object({
   path: ['confirmPassword']
 });
 
+
 export default function SignUp(): JSX.Element {
   const navigate = useNavigate();
+  const setUserAtom = useSetRecoilState(UserAtom);
   const { setLocalStorage } = useLocalStorage();
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm({ resolver: zodResolver(signupSchema) });
+  } = useForm({resolver: zodResolver(signupSchema),
+    defaultValues: {
+      email: 'n@gmail.com',
+      password: 'nmnmnm',
+      confirmPassword: 'nmnmnm',
+    }
+  });
   
-  const onSubmit = handleSubmit((data: FieldValues) => {
-    const response = SignUpApi({email: data.email, password: data.password});
+  const onSubmit = handleSubmit(async (data: FieldValues) => {
+    const { email, password } = data;
+    const response = await SignUpApi({ email, password });
 
     if (response.status) {
-      // AuthSuccessful();
-      setLocalStorage('user', [JSON.stringify(data)]);    
+      setUserAtom({email});
+      setLocalStorage('user', {email});
       navigate('/');
     }
   });

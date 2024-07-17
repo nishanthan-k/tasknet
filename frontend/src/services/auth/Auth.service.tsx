@@ -9,7 +9,7 @@ interface SignUp {
   message: string,
 }
 
-export const SignUpApi = (props: SignUpType): SignUp => {
+export const SignUpApi = async (props: SignUpType): Promise<SignUp> => {
   // const options = {
   //   method: 'POST',
   //   headers: {
@@ -24,6 +24,7 @@ export const SignUpApi = (props: SignUpType): SignUp => {
   //   console.log(errorData);
   //   return;
   // }
+  console.log(JSON.stringify(props));
 
   return {status: true, message: 'Signup successful'};
 };
